@@ -1,13 +1,13 @@
 exports.LoginPage = class LoginPage {
     constructor(page) {
         this.page = page
-        this.usernameField = page.locator('[placeholder="Username"]')
-        this.passwordField = page.locator('[data-test="password"]')
-        this.loginBtn = page.locator('[data-test="login-button"]')
+        this.usernameField = page.locator('[id="email"]')
+        this.passwordField = page.locator('[id="pw"]')
+        this.loginBtn = page.locator('[id="login_submit"]')
+        this.signInBtn = page.locator('[id="logIn"]')
     }
-    //action
-    async navigate() {
-        await this.page.goto("/")
+    async navigatetoLogin() {
+        await this.page.goto('/login')
     }
     async enterUsername(username) {
         await this.usernameField.fill(username)
@@ -16,6 +16,11 @@ exports.LoginPage = class LoginPage {
         await this.passwordField.fill(password)
     }
     async loginBtnClick() {
+        await this.loginBtn.click()
+    }
+    async loginUser(user, pwd) {
+        await this.usernameField.fill(user)
+        await this.passwordField.fill(pwd)
         await this.loginBtn.click()
     }
 }
